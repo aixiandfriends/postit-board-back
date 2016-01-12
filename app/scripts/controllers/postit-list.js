@@ -8,10 +8,10 @@
  * Controller of the postitBoardBackApp
  */
 angular.module('postitBoardBackApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('PostitListCtrl', [
+      '$scope', 'Postit',
+      function ($scope, Postit) {
+          $scope.postits = Postit.list();
+      }
+    ]
+  );

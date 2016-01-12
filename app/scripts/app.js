@@ -10,7 +10,6 @@
  */
 angular
   .module('postitBoardBackApp', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
@@ -20,14 +19,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
+        templateUrl: 'views/postit-list.html',
+        controller: 'PostitListCtrl',
+        controllerAs: 'postit-list'
       })
       .otherwise({
         redirectTo: '/'
