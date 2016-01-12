@@ -13,18 +13,33 @@ angular.module('postitBoardBackApp')
       function ($scope, Postit) {
           Postit.list(function (response) {
               $scope.postits = response;
+              $scope.delete = function (id) {
+                    Postit.delete({id: id},
+                    function(response) {
+                        delete $scope.postits[id];
+                    });
+
+                }
           })
       }
     ]
   )
     .controller('PostitEditCtrl', [
-        '$scope', '$routeParams', 'Postit',
-          function ($scope, $routeParams,  Postit) {
+        '$scope', '$routeParams', '$location', 'Postit',
+          function ($scope, $routeParams, $location,  Postit) {
               Postit.get({id: $routeParams.postitId}, function(response) {
                   $scope.postit = response;
               });
               $scope.update = function() {
                   Postit.update({id: $scope.postit._id}, {'post_it': {'message': $scope.postit.message}});
+              }
+
+              $scope.delete = function (id) {
+                  Postit.delete({id: id},
+                      function(response) {
+                          $location.path('/');
+                  });
+
               }
           }
     ])

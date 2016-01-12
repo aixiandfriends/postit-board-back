@@ -1,6 +1,6 @@
 <form novalidate ng-submit="update()">
     Id: <input type="text" readonly ng-model="postit._id"/><br/>
     Message: <textarea required ng-model="postit.message"></textarea>
-    <input type="submit"/>
+    <input type="submit"/> <a ng-click="delete(postit._id)">Delete</a>
 </form>
 
