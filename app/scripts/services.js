@@ -2,25 +2,18 @@
 
 angular.module('postitBoardBackApp').factory('Postit', ['$resource',
     function($resource) {
-        var baseurl = 'http://172.16.0.8:8080/app_dev.php/:verb';
+        var baseurl = 'http://172.16.0.8:8080/app_dev.php/postits';
+        var headers = { 'Authorization': 'Basic ' + btoa('back:backPourTrav')};
         return $resource(
             baseurl,
             {},
             {
-                list: {method:'GET', params: {verb: 'postits'}, isArray: false, transformResponse: transformGet },
-                get:  {method:'GET', url: baseurl + '/:postitId', params: { postitId:'1', verb: 'postits'}, isArray: false, transformResponse: transformGet },
-                update: {method:'GET', params: {verb: 'postits'}, isArray: false, transformResponse: transformGet },
+                list: {method:'GET', isArray: false, headers: headers},
+                get:  {method:'GET', url: baseurl + '/:id', isArray: false, headers: headers},
+                update: {method:'PUT',url: baseurl + '/:id', isArray: false, headers: headers},
             }
 
         );
     }
 ]
 );
-
-function transformGet(json, headerGetter) {
-    var fromJson = angular.fromJson(json);
-    console.log(fromJson);
-    //json.id = json._id.$id;
-    fromJson.json = json ;
-    return fromJson;
-}

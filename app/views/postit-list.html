@@ -1,3 +1,5 @@
-<div ng-repeat="postit in postits">
-    <span>{{postit._id.$id}} - {{postit.message}}</span>
+<div>
+    <ul ng-repeat="postit in postits">
+        <li>{{postit._id.$id}}<a href="#/postits/{{postit._id}}">{{postit.message}}</a></li>
+    </ul>
 </div>

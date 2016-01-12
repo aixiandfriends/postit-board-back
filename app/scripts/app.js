@@ -21,7 +21,12 @@ angular
       .when('/', {
         templateUrl: 'views/postit-list.html',
         controller: 'PostitListCtrl',
-        controllerAs: 'postit-list'
+        controllerAs: 'postit'
+      })
+      .when('/postits/:postitId', {
+        templateUrl: 'views/postit-edit.html',
+        controller: 'PostitEditCtrl',
+        controllerAs: 'postit'
       })
       .otherwise({
         redirectTo: '/'
